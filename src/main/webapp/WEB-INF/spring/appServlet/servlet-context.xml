@@ -92,7 +92,7 @@
 
 		<property name="issuerService" ref="hybridIssuerService" />
 		<property name="serverConfigurationService" ref="dynamicServerConfigurationService" />
-		<property name="clientConfigurationService" ref="dynamicClientConfigurationService" />
+		<property name="clientConfigurationService" ref="hybridClientConfigurationService" />
 		<property name="authRequestOptionsService" ref="staticAuthRequestOptionsService" />
 		<property name="authRequestUrlBuilder" ref="plainAuthRequestUrlBuilder" />
 		
@@ -111,7 +111,7 @@
 		Static issuer service, returns the same issuer for every request.
 	-->
 	<bean class="org.mitre.openid.connect.client.service.impl.StaticSingleIssuerService" id="staticIssuerService">
-		<property name="issuer" value="http://localhost:8080/openid-connect-server-webapp/" />
+		<property name="issuer" value="http://localhost:8080/orcid-openid-connect-web/" />
 	</bean>	
 
 	<!-- 
@@ -158,13 +158,13 @@
 	<bean class="org.mitre.openid.connect.client.service.impl.StaticServerConfigurationService">
 		<property name="servers">
 			<map>
-				<entry key="http://localhost:8080/openid-connect-server-webapp/">
+				<entry key="http://localhost:8080/orcid-openid-connect-web/">
 					<bean class="org.mitre.openid.connect.config.ServerConfiguration">
-						<property name="issuer" value="http://localhost:8080/openid-connect-server-webapp/" />
-						<property name="authorizationEndpointUri"	value="http://localhost:8080/openid-connect-server-webapp/authorize" />
-						<property name="tokenEndpointUri"	value="http://localhost:8080/openid-connect-server-webapp/token" />
-						<property name="userInfoUri" value="http://localhost:8080/openid-connect-server-webapp/userinfo" />
-						<property name="jwksUri" value="http://localhost:8080/openid-connect-server-webapp/jwk" />
+						<property name="issuer" value="http://localhost:8080/orcid-openid-connect-web/" />
+						<property name="authorizationEndpointUri"	value="http://localhost:8080/orcid-openid-connect-web/authorize" />
+						<property name="tokenEndpointUri"	value="http://localhost:8080/orcid-openid-connect-web/token" />
+						<property name="userInfoUri" value="http://localhost:8080/orcid-openid-connect-web/userinfo" />
+						<property name="jwksUri" value="http://localhost:8080/orcid-openid-connect-web/jwk" />
 					</bean>
 				</entry>
 			</map>
@@ -183,13 +183,13 @@
 	<bean class="org.mitre.openid.connect.client.service.impl.HybridServerConfigurationService">
 		<property name="servers">
 			<map>
-				<entry key="http://localhost:8080/openid-connect-server-webapp/">
+				<entry key="http://localhost:8080/orcid-openid-connect-web/">
 					<bean class="org.mitre.openid.connect.config.ServerConfiguration">
-						<property name="issuer" value="http://localhost:8080/openid-connect-server-webapp/" />
-						<property name="authorizationEndpointUri"	value="http://localhost:8080/openid-connect-server-webapp/authorize" />
-						<property name="tokenEndpointUri"	value="http://localhost:8080/openid-connect-server-webapp/token" />
-						<property name="userInfoUri" value="http://localhost:8080/openid-connect-server-webapp/userinfo" />
-						<property name="jwksUri" value="http://localhost:8080/openid-connect-server-webapp/jwk" />
+						<property name="issuer" value="http://localhost:8080/orcid-openid-connect-web/" />
+						<property name="authorizationEndpointUri"	value="http://localhost:8080/orcid-openid-connect-web/authorize" />
+						<property name="tokenEndpointUri"	value="http://localhost:8080/orcid-openid-connect-web/token" />
+						<property name="userInfoUri" value="http://localhost:8080/orcid-openid-connect-web/userinfo" />
+						<property name="jwksUri" value="http://localhost:8080/orcid-openid-connect-web/jwk" />
 					</bean>
 				</entry>
 			</map>
@@ -228,12 +228,12 @@
 				<property name="tokenEndpointAuthMethod" value="SECRET_BASIC" />
 				<property name="redirectUris">
 					<set>
-						<value>http://localhost:8080/simple-web-app/openid_connect_login</value>
+						<value>http://localhost:8989/orcid-example-openid-web-app/openid_connect_login</value>
 					</set>
 				</property>
 				<!-- for signed requests -->
 				<property name="requestObjectSigningAlg" value="RS256" />
-				<property name="jwksUri" value="http://localhost:8080/simple-web-app/jwk" />
+				<property name="jwksUri" value="http://localhost:8989/orcid-example-openid-web-app/jwk" />
 			</bean>
 		</property>
 		<!-- 
@@ -245,7 +245,7 @@
 		<!--
 		<property name="registeredClientService">
 			<bean class="org.mitre.openid.connect.client.service.impl.JsonFileRegisteredClientService">
-				<constructor-arg name="filename" value="/tmp/simple-web-app-clients.json" />
+				<constructor-arg name="filename" value="/tmp/orcid-example-openid-web-app-clients.json" />
 			</bean>
 		</property>
 		 -->
@@ -258,7 +258,7 @@
 	<bean class="org.mitre.openid.connect.client.service.impl.StaticClientConfigurationService" id="staticClientConfigurationService">
 		<property name="clients">
 			<map>
-				<entry key="http://localhost:8080/openid-connect-server-webapp/">
+				<entry key="http://localhost:8080/orcid-openid-connect-web/">
 					<bean class="org.mitre.oauth2.model.RegisteredClient">
 						<property name="clientId" value="client" />
 						<property name="clientSecret" value="secret" />
@@ -274,7 +274,7 @@
 						<property name="tokenEndpointAuthMethod" value="SECRET_BASIC" />
 						<property name="redirectUris">
 							<set>
-								<value>http://localhost:8080/simple-web-app/openid_connect_login</value>
+								<value>http://localhost:8989/orcid-example-openid-web-app/openid_connect_login</value>
 							</set>
 						</property>
 					</bean>
@@ -290,7 +290,7 @@
 	<bean class="org.mitre.openid.connect.client.service.impl.HybridClientConfigurationService" id="hybridClientConfigurationService">
 		<property name="clients">
 			<map>
-				<entry key="http://localhost:8080/openid-connect-server-webapp/">
+				<entry key="http://localhost:8080/orcid-openid-connect-web/">
 					<bean class="org.mitre.oauth2.model.RegisteredClient">
 						<property name="clientId" value="client" />
 						<property name="clientSecret" value="secret" />
@@ -306,7 +306,7 @@
 						<property name="tokenEndpointAuthMethod" value="SECRET_BASIC" />
 						<property name="redirectUris">
 							<set>
-								<value>http://localhost:8080/simple-web-app/openid_connect_login</value>
+								<value>http://localhost:8989/orcid-example-openid-web-app/openid_connect_login</value>
 							</set>
 						</property>
 						
@@ -329,7 +329,7 @@
 				<property name="tokenEndpointAuthMethod" value="SECRET_BASIC" />
 				<property name="redirectUris">
 					<set>
-						<value>http://localhost:8080/simple-web-app/openid_connect_login</value>
+						<value>http://localhost:8989/orcid-example-openid-web-app/openid_connect_login</value>
 					</set>
 				</property>
 			</bean>
@@ -343,7 +343,7 @@
 		<!--
 		<property name="registeredClientService">
 			<bean class="org.mitre.openid.connect.client.service.impl.JsonFileRegisteredClientService">
-				<constructor-arg name="filename" value="/tmp/simple-web-app-clients.json" />
+				<constructor-arg name="filename" value="/tmp/orcid-example-openid-web-app-clients.json" />
 			</bean>
 		</property>
 		 -->
